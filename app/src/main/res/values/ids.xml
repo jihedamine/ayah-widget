@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quoteTextView" type="id">quoteTextView</string>
+    <string name="editQuoteButton" type="id">editQuoteButton</string>
+    <string name="deleteQuoteButton" type="id">deleteQuoteButton</string>
+</resources>

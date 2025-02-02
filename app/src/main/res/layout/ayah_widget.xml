@@ -1,0 +1,19 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.AyahWidget.AppWidget.Container"
+    android:id="@+id/appwidget_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.AyahWidget.AppWidgetContainer"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/appwidget_text"
+        style="@style/Widget.AyahWidget.AppWidget.InnerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/appwidget_text"
+        android:text="@string/appwidget_text"
+        android:textStyle="bold|italic" />
+</RelativeLayout>

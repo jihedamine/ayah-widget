@@ -1,0 +1,72 @@
+<com.google.android.material.card.MaterialCardView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="30dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.circularreveal.CircularRevealLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="Select Text size"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="16dp" />
+
+            <Spinner
+                android:id="@+id/textSizePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="Select Text color"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/textColorPickerButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Text Color Picker" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/cardview_light_background"
+                android:text="Select Widget Background"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/bgColorPickerButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:contentDescription="Select Background Color" />
+
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save Preferences" />
+
+        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
+    </ScrollView>
+</com.google.android.material.card.MaterialCardView>

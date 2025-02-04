@@ -1,19 +1,32 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/Widget.AyahWidget.AppWidget.Container"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/appwidget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.AyahWidget.AppWidgetContainer"
-    android:background="@color/black">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center_vertical"
+    android:background="?attr/colorSecondaryContainer"
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
     <TextView
-        android:id="@+id/appwidget_text"
-        style="@style/Widget.AyahWidget.AppWidget.InnerView"
+        android:id="@+id/appwidget_ayah_content"
+        android:contentDescription="@string/appwidget_ayah_content"
+        android:text="@string/appwidget_ayah_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textStyle="bold|italic" />
-</RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        android:gravity="center|center"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/appwidget_ayah_name"
+        android:contentDescription="@string/appwidget_ayah_name"
+        android:text="@string/appwidget_ayah_name"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:gravity="top|center"
+        android:textStyle="italic" />
+
+</LinearLayout>

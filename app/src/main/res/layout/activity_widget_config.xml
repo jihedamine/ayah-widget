@@ -1,41 +1,32 @@
-<com.google.android.material.card.MaterialCardView
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="30dp"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:id="@+id/appwidget_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="?attr/colorSecondaryContainer"
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.google.android.material.circularreveal.CircularRevealLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/cardview_light_background"
+                android:textColor="?attr/colorOnSecondaryContainer"
                 android:text="Select Text size"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
-            <Spinner
-                android:id="@+id/textSizePicker"
+    <Spinner
+        android:id="@+id/textSizePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-            />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/cardview_light_background"
                 android:text="Select Text color"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="16dp" />
+                android:textColor="?attr/colorOnSecondaryContainer"
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/textColorPickerButton"
@@ -45,13 +36,12 @@
                 android:layout_marginBottom="16dp"
                 android:contentDescription="Text Color Picker" />
 
-            <com.google.android.material.textview.MaterialTextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/cardview_light_background"
+                android:textColor="?attr/colorOnSecondaryContainer"
                 android:text="Select Widget Background"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/bgColorPickerButton"
@@ -61,12 +51,69 @@
                 android:layout_marginBottom="16dp"
                 android:contentDescription="Select Background Color" />
 
-            <Button
+    <Button
+        android:id="@+id/button_update_quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Quote" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/save_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save Preferences" />
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_save"
+                app:tint="@color/black"
+                app:backgroundTint="?attr/colorOnSecondaryContainer"
+                android:padding="0dp"
+                android:contentDescription="Save changes"
+                android:layout_margin="15dp" />
 
-        </com.google.android.material.circularreveal.CircularRevealLinearLayout>
-    </ScrollView>
-</com.google.android.material.card.MaterialCardView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ListView
+            android:id="@+id/quotes_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:dividerHeight="1dp"/>
+
+        <EditText
+            android:id="@+id/edit_text_quote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter quote"
+            android:minHeight="48dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add"/>
+
+            <Button
+                android:id="@+id/button_edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit"/>
+
+            <Button
+                android:id="@+id/button_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -3,9 +3,12 @@ package org.jihedamine.ayahwidget;
 import android.content.Context;
 import android.content.res.AssetManager;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +35,7 @@ public class QuoteRepository {
         return quotes;
     }
 
-    public String getRandomQuote() {
-        var quotes = getQuotes();
+    public String getRandomQuote(List<String> quotes) {
         var index = (int) (Math.random() * quotes.size());
         return quotes.get(index);
     }

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">AyahWidget</string>
-    <string name="appwidget_text">واللَّه ولي المتقين - الجاثية 19</string>
+    <string name="appwidget_ayah_content">واللَّه ولي المتقين</string>
+    <string name="appwidget_ayah_name">الجاثية 19</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
 </resources>

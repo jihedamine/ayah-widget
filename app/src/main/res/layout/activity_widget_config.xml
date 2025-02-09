@@ -1,119 +1,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/appwidget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="?attr/colorSurface"
     android:gravity="center"
-    android:background="?attr/colorSecondaryContainer"
+    android:orientation="vertical"
+    android:paddingTop="120dp"
+    android:paddingBottom="40dp"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnSecondaryContainer"
-                android:text="Select Text size"
-                android:textSize="16sp" />
-
-    <Spinner
-        android:id="@+id/textSizePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minHeight="48dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Text color"
-                android:textColor="?attr/colorOnSecondaryContainer"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/textColorPickerButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:contentDescription="Text Color Picker" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="?attr/colorOnSecondaryContainer"
-                android:text="Select Widget Background"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/bgColorPickerButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:contentDescription="Select Background Color" />
-
-    <Button
-        android:id="@+id/button_update_quote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update Quote" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/save_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:src="@drawable/ic_save"
-                app:tint="@color/black"
-                app:backgroundTint="?attr/colorOnSecondaryContainer"
-                android:padding="0dp"
-                android:contentDescription="Save changes"
-                android:layout_margin="15dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp">
 
-        <ListView
-            android:id="@+id/quotes_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/textSizePicker"
+            android:paddingEnd="20dp"
+            android:text="Text size"
+            android:textColor="?attr/colorOnSurface" />
+
+        <Spinner
+            android:id="@+id/textSizePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/label_interval_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@id/intervalPicker"
+            android:paddingEnd="20dp"
+            android:text="Ayah Refresh Interval"
+            android:textColor="?attr/colorOnSurface" />
+
+        <Spinner
+            android:id="@+id/intervalPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_change_ayah"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
             android:layout_weight="1"
-            android:dividerHeight="1dp"/>
+            android:text="Change Ayah" />
 
-        <EditText
-            android:id="@+id/edit_text_quote"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Enter quote"
-            android:minHeight="48dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_add"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add"/>
-
-            <Button
-                android:id="@+id/button_edit"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Edit"/>
-
-            <Button
-                android:id="@+id/button_delete"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Delete"/>
-        </LinearLayout>
+            android:layout_marginHorizontal="6dp"
+            android:layout_weight="1"
+            android:text="Save" />
     </LinearLayout>
 </LinearLayout>

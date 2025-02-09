@@ -19,24 +19,20 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
+
         <receiver
-            android:name="org.jihedamine.ayahwidget.AyahWidgetProvider"
+            android:name=".AyahWidgetProvider"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-
+            <intent-filter>
+                <action android:name="org.jihedamine.ayahwidget.AUTO_UPDATE" />
+            </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/ayah_widget_info" />
         </receiver>
-
-        <receiver android:name=".QuoteUpdateReceiver" android:exported="false">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-        </receiver>
-
 
     </application>
 

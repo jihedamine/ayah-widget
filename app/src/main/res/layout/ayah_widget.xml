@@ -3,10 +3,7 @@
     android:id="@+id/appwidget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:layout_gravity="center_vertical"
-    android:background="?attr/colorSecondaryContainer"
+    android:background="?attr/colorSurface"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
     <TextView
@@ -14,19 +11,10 @@
         android:contentDescription="@string/appwidget_ayah_content"
         android:text="@string/appwidget_ayah_content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6"
+        android:layout_height="match_parent"
+        android:textColor="?attr/colorOnSurface"
+        android:padding="10dp"
         android:gravity="center|center"
         android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/appwidget_ayah_name"
-        android:contentDescription="@string/appwidget_ayah_name"
-        android:text="@string/appwidget_ayah_name"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.4"
-        android:gravity="top|center"
-        android:textStyle="italic" />
 
 </LinearLayout>

@@ -10,9 +10,8 @@
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="3"
     android:targetCellHeight="1"
-    android:updatePeriodMillis="86400000"
     android:widgetCategory="home_screen"
     android:configure="org.jihedamine.ayahwidget.WidgetConfigActivity"
-    layout="@layout/ayah_widget"
+    android:updatePeriodMillis="0"
     android:widgetFeatures="reconfigurable"
     />

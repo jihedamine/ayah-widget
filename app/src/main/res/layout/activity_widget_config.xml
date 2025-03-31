@@ -42,17 +42,31 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@id/textSizePicker"
                     android:text="Text size"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
-
-                <Spinner
-                    android:id="@+id/textSizePicker"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
 
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/textSizeSlider"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:valueFrom="40"
+                        android:valueTo="60"
+                        android:stepSize="4"/>
+
+                    <TextView
+                        android:id="@+id/textSizeValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.RemoteViews;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.slider.Slider;
 
 import org.json.JSONObject;
 
@@ -23,16 +26,17 @@ import java.util.stream.IntStream;
 
 public class WidgetConfigActivity extends Activity {
     public static final float TEXT_SIZE_DEFAULT = 44f;
-    public static final float ALPHA_DEFAULT = 0.5f;
     public static final int AYAH_REFRESH_INTERVAL_MINS = 30;
     public static final long MINUTES_TO_MILLIS = 1000 * 60;
     public static final String WIDGET_PREFS = "WidgetPrefs";
     private static final float ALPHA_TRANSPARENT = 0.1f;
-    private static final float ALPHA_SEMI_TRANSPARENT = 0.7f;
+    private static final float ALPHA_SEMI_TRANSPARENT = 0.8f;
     private static final float ALPHA_OPAQUE = 1.0f;
+    public static final float ALPHA_DEFAULT = ALPHA_SEMI_TRANSPARENT;
 
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    private Spinner textSizePicker;
+    private Slider textSizeSlider;
+    private TextView textSizeValue;
     private String ayahContent;
     private Spinner intervalPicker;
     private RadioGroup alphaRadioGroup;
@@ -65,11 +69,13 @@ public class WidgetConfigActivity extends Activity {
         float widgetTextSize = prefs.getFloat("widget_text_size_" + appWidgetId, TEXT_SIZE_DEFAULT);
         ayahContent = prefs.getString("widget_ayah_content_" + appWidgetId, ayah.toString()); // Default to a random quote
 
-        textSizePicker = findViewById(R.id.textSizePicker);
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getTextSizeValues());
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        textSizePicker.setAdapter(adapter);
-        textSizePicker.setSelection(adapter.getPosition((int)widgetTextSize));
+        textSizeSlider = findViewById(R.id.textSizeSlider);
+        textSizeValue = findViewById(R.id.textSizeValue);
+        textSizeSlider.setValue(widgetTextSize);
+        textSizeValue.setText(String.valueOf((int)widgetTextSize));
+        
+        textSizeSlider.addOnChangeListener((slider, value, fromUser) -> 
+            textSizeValue.setText(String.valueOf((int)value)));
 
         intervalPicker = findViewById(R.id.intervalPicker);
         ArrayAdapter<Integer> intervalAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getIntervalValues());
@@ -107,7 +113,7 @@ public class WidgetConfigActivity extends Activity {
         // Save the selected preferences
         SharedPreferences prefs = getSharedPreferences(WIDGET_PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putFloat("widget_text_size_" + appWidgetId, ((Integer) textSizePicker.getSelectedItem()).floatValue());
+        editor.putFloat("widget_text_size_" + appWidgetId, textSizeSlider.getValue());
         editor.putInt("widget_refresh_interval_" + appWidgetId, (Integer) intervalPicker.getSelectedItem());
 
         // Save alpha based on selected radio button
@@ -160,10 +166,6 @@ public class WidgetConfigActivity extends Activity {
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(appWidgetId, views);
-    }
-
-    private List<Integer> getTextSizeValues() {
-        return IntStream.of(40, 44, 48, 52, 56, 60).boxed().collect(Collectors.toList());
     }
 
     private List<Integer> getIntervalValues() {

@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -77,11 +78,26 @@ public class WidgetConfigActivity extends Activity {
         intervalPicker.setSelection(intervalAdapter.getPosition(savedInterval));
 
         alphaPicker = findViewById(R.id.alphaPicker);
-        ArrayAdapter<Integer> alphaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getAlphaValues());
+        List<AlphaOption> alphaOptions = Arrays.asList(
+            new AlphaOption("Transparent", 0.1f),
+            new AlphaOption("Semi-transparent", 0.6f),
+            new AlphaOption("Opaque", 1f)
+        );
+        ArrayAdapter<AlphaOption> alphaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, alphaOptions);
         alphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         alphaPicker.setAdapter(alphaAdapter);
-        int savedAlpha = (int)(prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT) * 100);
-        alphaPicker.setSelection(alphaAdapter.getPosition(savedAlpha));
+        float savedAlpha = prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT);
+        // Select the closest alpha value
+        int selectedIndex = 0;
+        float minDiff = Float.MAX_VALUE;
+        for (int i = 0; i < alphaOptions.size(); i++) {
+            float diff = Math.abs(alphaOptions.get(i).value - savedAlpha);
+            if (diff < minDiff) {
+                minDiff = diff;
+                selectedIndex = i;
+            }
+        }
+        alphaPicker.setSelection(selectedIndex);
 
         android.widget.Button changeAyahButton = findViewById(R.id.button_change_ayah);
         changeAyahButton.setOnClickListener(v -> updateWidgetWithNewAyah());
@@ -101,7 +117,7 @@ public class WidgetConfigActivity extends Activity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putFloat("widget_text_size_" + appWidgetId, ((Integer) textSizePicker.getSelectedItem()).floatValue());
         editor.putInt("widget_refresh_interval_" + appWidgetId, (Integer) intervalPicker.getSelectedItem());
-        editor.putFloat("widget_alpha_" + appWidgetId, ((Integer) alphaPicker.getSelectedItem()).floatValue() / 100f);
+        editor.putFloat("widget_alpha_" + appWidgetId, ((AlphaOption) alphaPicker.getSelectedItem()).value);
         editor.putString("widget_ayah_content_" + appWidgetId, ayahContent);
         editor.apply();
 
@@ -140,7 +156,18 @@ public class WidgetConfigActivity extends Activity {
         return IntStream.of(5, 15, 30, 45, 60, 120, 240).boxed().collect(Collectors.toList());
     }
 
-    private List<Integer> getAlphaValues() {
-        return IntStream.of(25, 50, 75, 100).boxed().collect(Collectors.toList());
+    private static class AlphaOption {
+        final String name;
+        final float value;
+
+        AlphaOption(String name, float value) {
+            this.name = name;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 }

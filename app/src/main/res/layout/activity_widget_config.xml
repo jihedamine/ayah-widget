@@ -1,97 +1,144 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/appwidget_layout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorSurface"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:paddingTop="120dp"
-    android:paddingBottom="40dp"
-    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
-
+    android:theme="@style/Theme.Material3.DynamicColors.DayNight"
+    android:fitsSystemWindows="true">
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/textSizePicker"
-            android:paddingEnd="20dp"
-            android:text="Text size"
-            android:textColor="?attr/colorOnSurface" />
+            android:layout_marginBottom="24dp"
+            android:gravity="center"
+            android:text="Widget Settings"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
 
-        <Spinner
-            android:id="@+id/textSizePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp">
-
-        <TextView
-            android:id="@+id/label_interval_picker"
-            android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/intervalPicker"
-            android:paddingEnd="20dp"
-            android:text="Ayah Refresh Interval"
-            android:textColor="?attr/colorOnSurface" />
+            android:layout_marginBottom="16dp"
+            app:cardElevation="2dp">
 
-        <Spinner
-            android:id="@+id/intervalPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Appearance"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingHorizontal="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/textSizePicker"
+                    android:text="Text size"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
-        <TextView
-            android:id="@+id/label_alpha_picker"
-            android:layout_width="wrap_content"
+
+                <Spinner
+                    android:id="@+id/textSizePicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Background opacity"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
+
+                <RadioGroup
+                    android:id="@+id/alphaRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/radioTransparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Transparent" />
+
+                    <RadioButton
+                        android:id="@+id/radioSemiTransparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Semi-transparent" />
+
+                    <RadioButton
+                        android:id="@+id/radioOpaque"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Opaque" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:labelFor="@id/alphaPicker"
-            android:paddingEnd="20dp"
-            android:text="Background Opacity"
-            android:textColor="?attr/colorOnSurface" />
+            android:layout_marginBottom="24dp"
+            app:cardElevation="2dp">
 
-        <Spinner
-            android:id="@+id/alphaPicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Update Settings"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@id/intervalPicker"
+                    android:text="Refresh interval"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
-        <Button
+
+                    <Spinner
+                        android:id="@+id/intervalPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_change_ayah"
-            android:layout_width="0dp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="6dp"
-            android:layout_weight="1"
+            android:layout_marginBottom="8dp"
             android:text="Change Ayah" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/save_button"
-            android:layout_width="0dp"
+            style="@style/Widget.Material3.Button"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="6dp"
-            android:layout_weight="1"
             android:text="Save" />
+
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

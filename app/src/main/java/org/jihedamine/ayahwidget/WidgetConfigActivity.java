@@ -10,31 +10,32 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONObject;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class WidgetConfigActivity extends Activity {
-    public static final float TEXT_SIZE_DEFAULT = 48f;
+    public static final float TEXT_SIZE_DEFAULT = 44f;
     public static final float ALPHA_DEFAULT = 0.5f;
     public static final int AYAH_REFRESH_INTERVAL_MINS = 30;
     public static final long MINUTES_TO_MILLIS = 1000 * 60;
     public static final String WIDGET_PREFS = "WidgetPrefs";
+    private static final float ALPHA_TRANSPARENT = 0.1f;
+    private static final float ALPHA_SEMI_TRANSPARENT = 0.7f;
+    private static final float ALPHA_OPAQUE = 1.0f;
+
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private Spinner textSizePicker;
     private String ayahContent;
     private Spinner intervalPicker;
-    private Spinner alphaPicker;
+    private RadioGroup alphaRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,27 +78,18 @@ public class WidgetConfigActivity extends Activity {
         int savedInterval = prefs.getInt("widget_refresh_interval_" + appWidgetId, AYAH_REFRESH_INTERVAL_MINS);
         intervalPicker.setSelection(intervalAdapter.getPosition(savedInterval));
 
-        alphaPicker = findViewById(R.id.alphaPicker);
-        List<AlphaOption> alphaOptions = Arrays.asList(
-            new AlphaOption("Transparent", 0.1f),
-            new AlphaOption("Semi-transparent", 0.6f),
-            new AlphaOption("Opaque", 1f)
-        );
-        ArrayAdapter<AlphaOption> alphaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, alphaOptions);
-        alphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        alphaPicker.setAdapter(alphaAdapter);
+        // Replace alpha spinner with radio group handling
+        alphaRadioGroup = findViewById(R.id.alphaRadioGroup);
         float savedAlpha = prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT);
-        // Select the closest alpha value
-        int selectedIndex = 0;
-        float minDiff = Float.MAX_VALUE;
-        for (int i = 0; i < alphaOptions.size(); i++) {
-            float diff = Math.abs(alphaOptions.get(i).value - savedAlpha);
-            if (diff < minDiff) {
-                minDiff = diff;
-                selectedIndex = i;
-            }
+
+        // Select the closest alpha value radio button
+        if (Math.abs(savedAlpha - ALPHA_TRANSPARENT) < Math.abs(savedAlpha - ALPHA_SEMI_TRANSPARENT)) {
+            alphaRadioGroup.check(R.id.radioTransparent);
+        } else if (Math.abs(savedAlpha - ALPHA_SEMI_TRANSPARENT) < Math.abs(savedAlpha - ALPHA_OPAQUE)) {
+            alphaRadioGroup.check(R.id.radioSemiTransparent);
+        } else {
+            alphaRadioGroup.check(R.id.radioOpaque);
         }
-        alphaPicker.setSelection(selectedIndex);
 
         android.widget.Button changeAyahButton = findViewById(R.id.button_change_ayah);
         changeAyahButton.setOnClickListener(v -> updateWidgetWithNewAyah());
@@ -117,7 +109,19 @@ public class WidgetConfigActivity extends Activity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putFloat("widget_text_size_" + appWidgetId, ((Integer) textSizePicker.getSelectedItem()).floatValue());
         editor.putInt("widget_refresh_interval_" + appWidgetId, (Integer) intervalPicker.getSelectedItem());
-        editor.putFloat("widget_alpha_" + appWidgetId, ((AlphaOption) alphaPicker.getSelectedItem()).value);
+
+        // Save alpha based on selected radio button
+        float selectedAlpha;
+        int selectedId = alphaRadioGroup.getCheckedRadioButtonId();
+        if (selectedId == R.id.radioTransparent) {
+            selectedAlpha = ALPHA_TRANSPARENT;
+        } else if (selectedId == R.id.radioSemiTransparent) {
+            selectedAlpha = ALPHA_SEMI_TRANSPARENT;
+        } else {
+            selectedAlpha = ALPHA_OPAQUE;
+        }
+        editor.putFloat("widget_alpha_" + appWidgetId, selectedAlpha);
+
         editor.putString("widget_ayah_content_" + appWidgetId, ayahContent);
         editor.apply();
 
@@ -142,7 +146,17 @@ public class WidgetConfigActivity extends Activity {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ayah_widget);
         views.setCharSequence(R.id.appwidget_ayah_content, "setText", getAyahSpannableString(ayahContent, (int) textSize));
-        views.setFloat(R.id.appwidget_layout, "setAlpha", alpha);
+        
+        // Get the themed surface color
+        android.util.TypedValue typedValue = new android.util.TypedValue();
+        context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorSurface, typedValue, true);
+        int backgroundColor = typedValue.data;
+        
+        // Apply alpha
+        int alphaMask = (int)(alpha * 255) << 24;
+        int backgroundColorWithAlpha = (backgroundColor & 0x00FFFFFF) | alphaMask;
+        
+        views.setInt(R.id.appwidget_layout, "setBackgroundColor", backgroundColorWithAlpha);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -154,20 +168,5 @@ public class WidgetConfigActivity extends Activity {
 
     private List<Integer> getIntervalValues() {
         return IntStream.of(5, 15, 30, 45, 60, 120, 240).boxed().collect(Collectors.toList());
-    }
-
-    private static class AlphaOption {
-        final String name;
-        final float value;
-
-        AlphaOption(String name, float value) {
-            this.name = name;
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return name;
-        }
     }
 }

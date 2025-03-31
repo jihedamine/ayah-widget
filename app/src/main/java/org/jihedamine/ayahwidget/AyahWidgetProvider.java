@@ -30,12 +30,14 @@ public class AyahWidgetProvider extends AppWidgetProvider {
                                 int appWidgetId) {
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         float textSize = prefs.getFloat("widget_text_size_" + appWidgetId, TEXT_SIZE_DEFAULT);
+        float alpha = prefs.getFloat("widget_alpha_" + appWidgetId, WidgetConfigActivity.ALPHA_DEFAULT);
 
         AyahRepository ayahRepository = new AyahRepository(context);
         JSONObject ayahContent = ayahRepository.getRandomAyah();
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ayah_widget);
         views.setCharSequence(R.id.appwidget_ayah_content, "setText", getAyahSpannableString(ayahContent.toString(), (int) textSize));
+        views.setFloat(R.id.appwidget_layout, "setAlpha", alpha);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }

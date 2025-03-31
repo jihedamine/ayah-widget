@@ -25,6 +25,7 @@ import java.util.stream.IntStream;
 
 public class WidgetConfigActivity extends Activity {
     public static final float TEXT_SIZE_DEFAULT = 48f;
+    public static final float ALPHA_DEFAULT = 0.5f;
     public static final int AYAH_REFRESH_INTERVAL_MINS = 30;
     public static final long MINUTES_TO_MILLIS = 1000 * 60;
     public static final String WIDGET_PREFS = "WidgetPrefs";
@@ -32,6 +33,7 @@ public class WidgetConfigActivity extends Activity {
     private Spinner textSizePicker;
     private String ayahContent;
     private Spinner intervalPicker;
+    private Spinner alphaPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,13 @@ public class WidgetConfigActivity extends Activity {
         int savedInterval = prefs.getInt("widget_refresh_interval_" + appWidgetId, AYAH_REFRESH_INTERVAL_MINS);
         intervalPicker.setSelection(intervalAdapter.getPosition(savedInterval));
 
+        alphaPicker = findViewById(R.id.alphaPicker);
+        ArrayAdapter<Integer> alphaAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getAlphaValues());
+        alphaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        alphaPicker.setAdapter(alphaAdapter);
+        int savedAlpha = (int)(prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT) * 100);
+        alphaPicker.setSelection(alphaAdapter.getPosition(savedAlpha));
+
         android.widget.Button changeAyahButton = findViewById(R.id.button_change_ayah);
         changeAyahButton.setOnClickListener(v -> updateWidgetWithNewAyah());
 
@@ -92,7 +101,7 @@ public class WidgetConfigActivity extends Activity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putFloat("widget_text_size_" + appWidgetId, ((Integer) textSizePicker.getSelectedItem()).floatValue());
         editor.putInt("widget_refresh_interval_" + appWidgetId, (Integer) intervalPicker.getSelectedItem());
-        // put a random quote
+        editor.putFloat("widget_alpha_" + appWidgetId, ((Integer) alphaPicker.getSelectedItem()).floatValue() / 100f);
         editor.putString("widget_ayah_content_" + appWidgetId, ayahContent);
         editor.apply();
 
@@ -113,9 +122,11 @@ public class WidgetConfigActivity extends Activity {
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         float textSize = prefs.getFloat("widget_text_size_" + appWidgetId, TEXT_SIZE_DEFAULT);
         String ayahContent = prefs.getString("widget_ayah_content_" + appWidgetId, ayah.toString());
+        float alpha = prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT);
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ayah_widget);
         views.setCharSequence(R.id.appwidget_ayah_content, "setText", getAyahSpannableString(ayahContent, (int) textSize));
+        views.setFloat(R.id.appwidget_layout, "setAlpha", alpha);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -127,5 +138,9 @@ public class WidgetConfigActivity extends Activity {
 
     private List<Integer> getIntervalValues() {
         return IntStream.of(5, 15, 30, 45, 60, 120, 240).boxed().collect(Collectors.toList());
+    }
+
+    private List<Integer> getAlphaValues() {
+        return IntStream.of(25, 50, 75, 100).boxed().collect(Collectors.toList());
     }
 }

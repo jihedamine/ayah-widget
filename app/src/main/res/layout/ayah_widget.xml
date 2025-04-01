@@ -3,7 +3,7 @@
     android:id="@+id/appwidget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
+    android:background="@color/widget_background"
     android:theme="@style/Theme.Material3.DynamicColors.DayNight">
 
     <TextView

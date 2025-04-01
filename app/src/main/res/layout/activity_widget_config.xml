@@ -10,38 +10,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             android:gravity="center"
             android:text="Widget Settings"
+            android:contentDescription="Widget Settings Screen"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="24dp"
             app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Appearance"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="Appearance"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:text="Customize how the Ayah appears on your home screen"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:alpha="0.8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="Text size"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
@@ -49,6 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginBottom="24dp"
                     android:gravity="center_vertical">
 
                     <com.google.android.material.slider.Slider
@@ -58,19 +69,22 @@
                         android:layout_weight="1"
                         android:valueFrom="40"
                         android:valueTo="60"
-                        android:stepSize="4"/>
+                        android:stepSize="4"
+                        android:contentDescription="Adjust text size"/>
 
                     <TextView
                         android:id="@+id/textSizeValue"
-                        android:layout_width="wrap_content"
+                        android:layout_width="48dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:gravity="end"
                         android:textAppearance="@style/TextAppearance.Material3.BodyMedium"/>
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="Background opacity"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
@@ -84,58 +98,67 @@
                         android:id="@+id/radioTransparent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:text="Transparent" />
 
                     <RadioButton
                         android:id="@+id/radioSemiTransparent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:text="Semi-transparent" />
 
                     <RadioButton
                         android:id="@+id/radioOpaque"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:text="Opaque" />
-
                 </RadioGroup>
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             app:cardElevation="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Update Settings"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="Update Settings"
-                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
+                    android:text="Control how often the Ayah updates"
+                    android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                    android:alpha="0.8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:labelFor="@id/intervalPicker"
                     android:text="Refresh interval"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
-
-                    <Spinner
-                        android:id="@+id/intervalPicker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none" />
-
+                <Spinner
+                    android:id="@+id/intervalPicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:inputType="none" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -144,7 +167,8 @@
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
+            android:minHeight="56dp"
             android:text="Change Ayah" />
 
         <com.google.android.material.button.MaterialButton
@@ -152,7 +176,7 @@
             style="@style/Widget.Material3.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="56dp"
             android:text="Save" />
-
     </LinearLayout>
 </ScrollView>

@@ -27,13 +27,9 @@ import java.util.stream.IntStream;
 public class WidgetConfigActivity extends Activity {
     public static final float TEXT_SIZE_DEFAULT = 44f;
     public static final int AYAH_REFRESH_INTERVAL_MINS = 30;
-    public static final long MINUTES_TO_MILLIS = 1000 * 60;
+//    public static final long MINUTES_TO_MILLIS = 1000 * 60;
+    public static final long MINUTES_TO_MILLIS = 100;
     public static final String WIDGET_PREFS = "WidgetPrefs";
-    private static final float ALPHA_TRANSPARENT = 0.1f;
-    private static final float ALPHA_SEMI_TRANSPARENT = 0.8f;
-    private static final float ALPHA_OPAQUE = 1.0f;
-    public static final float ALPHA_DEFAULT = ALPHA_SEMI_TRANSPARENT;
-
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private Slider textSizeSlider;
     private TextView textSizeValue;
@@ -73,8 +69,8 @@ public class WidgetConfigActivity extends Activity {
         textSizeValue = findViewById(R.id.textSizeValue);
         textSizeSlider.setValue(widgetTextSize);
         textSizeValue.setText(String.valueOf((int)widgetTextSize));
-        
-        textSizeSlider.addOnChangeListener((slider, value, fromUser) -> 
+
+        textSizeSlider.addOnChangeListener((slider, value, fromUser) ->
             textSizeValue.setText(String.valueOf((int)value)));
 
         intervalPicker = findViewById(R.id.intervalPicker);
@@ -84,18 +80,9 @@ public class WidgetConfigActivity extends Activity {
         int savedInterval = prefs.getInt("widget_refresh_interval_" + appWidgetId, AYAH_REFRESH_INTERVAL_MINS);
         intervalPicker.setSelection(intervalAdapter.getPosition(savedInterval));
 
-        // Replace alpha spinner with radio group handling
         alphaRadioGroup = findViewById(R.id.alphaRadioGroup);
-        float savedAlpha = prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT);
-
-        // Select the closest alpha value radio button
-        if (Math.abs(savedAlpha - ALPHA_TRANSPARENT) < Math.abs(savedAlpha - ALPHA_SEMI_TRANSPARENT)) {
-            alphaRadioGroup.check(R.id.radioTransparent);
-        } else if (Math.abs(savedAlpha - ALPHA_SEMI_TRANSPARENT) < Math.abs(savedAlpha - ALPHA_OPAQUE)) {
-            alphaRadioGroup.check(R.id.radioSemiTransparent);
-        } else {
-            alphaRadioGroup.check(R.id.radioOpaque);
-        }
+        int savedAlpha = prefs.getInt("widget_alpha_" + appWidgetId, R.id.radioOpaque);
+        alphaRadioGroup.check(savedAlpha);
 
         android.widget.Button changeAyahButton = findViewById(R.id.button_change_ayah);
         changeAyahButton.setOnClickListener(v -> updateWidgetWithNewAyah());
@@ -117,16 +104,8 @@ public class WidgetConfigActivity extends Activity {
         editor.putInt("widget_refresh_interval_" + appWidgetId, (Integer) intervalPicker.getSelectedItem());
 
         // Save alpha based on selected radio button
-        float selectedAlpha;
         int selectedId = alphaRadioGroup.getCheckedRadioButtonId();
-        if (selectedId == R.id.radioTransparent) {
-            selectedAlpha = ALPHA_TRANSPARENT;
-        } else if (selectedId == R.id.radioSemiTransparent) {
-            selectedAlpha = ALPHA_SEMI_TRANSPARENT;
-        } else {
-            selectedAlpha = ALPHA_OPAQUE;
-        }
-        editor.putFloat("widget_alpha_" + appWidgetId, selectedAlpha);
+        editor.putInt("widget_alpha_" + appWidgetId, selectedId);
 
         editor.putString("widget_ayah_content_" + appWidgetId, ayahContent);
         editor.apply();
@@ -148,21 +127,23 @@ public class WidgetConfigActivity extends Activity {
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         float textSize = prefs.getFloat("widget_text_size_" + appWidgetId, TEXT_SIZE_DEFAULT);
         String ayahContent = prefs.getString("widget_ayah_content_" + appWidgetId, ayah.toString());
-        float alpha = prefs.getFloat("widget_alpha_" + appWidgetId, ALPHA_DEFAULT);
+        int alpha = prefs.getInt("widget_alpha_" + appWidgetId, R.id.radioOpaque);
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ayah_widget);
         views.setCharSequence(R.id.appwidget_ayah_content, "setText", getAyahSpannableString(ayahContent, (int) textSize));
-        
-        // Get the themed surface color
-        android.util.TypedValue typedValue = new android.util.TypedValue();
-        context.getTheme().resolveAttribute(com.google.android.material.R.attr.colorSurface, typedValue, true);
-        int backgroundColor = typedValue.data;
-        
-        // Apply alpha
-        int alphaMask = (int)(alpha * 255) << 24;
-        int backgroundColorWithAlpha = (backgroundColor & 0x00FFFFFF) | alphaMask;
-        
-        views.setInt(R.id.appwidget_layout, "setBackgroundColor", backgroundColorWithAlpha);
+
+        // Set background based on alpha value
+        int backgroundResId;
+//        int selectedId = alphaRadioGroup.getCheckedRadioButtonId();
+        if (alpha == R.id.radioTransparent) {
+            backgroundResId = R.color.widget_background_transparent;
+        } else if(alpha == R.id.radioSemiTransparent) {
+            backgroundResId = R.color.widget_background_semi_transparent;
+        } else {
+            backgroundResId = R.color.widget_background_opaque;
+        }
+
+        views.setInt(R.id.appwidget_layout, "setBackgroundResource", backgroundResId);
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         appWidgetManager.updateAppWidget(appWidgetId, views);

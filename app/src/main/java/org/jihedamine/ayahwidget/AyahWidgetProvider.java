@@ -27,17 +27,15 @@ public class AyahWidgetProvider extends AppWidgetProvider {
     public static final double AYAH_NAME_TEXT_RATIO = 0.65;
 
     void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
+                         int appWidgetId) {
         SharedPreferences prefs = context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         float textSize = prefs.getFloat("widget_text_size_" + appWidgetId, TEXT_SIZE_DEFAULT);
-        float alpha = prefs.getFloat("widget_alpha_" + appWidgetId, WidgetConfigActivity.ALPHA_DEFAULT);
 
         AyahRepository ayahRepository = new AyahRepository(context);
         JSONObject ayahContent = ayahRepository.getRandomAyah();
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.ayah_widget);
         views.setCharSequence(R.id.appwidget_ayah_content, "setText", getAyahSpannableString(ayahContent.toString(), (int) textSize));
-        views.setFloat(R.id.appwidget_layout, "setAlpha", alpha);
 
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
@@ -61,16 +59,6 @@ public class AyahWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    public static int getSystemThemeBackgroundColor(Context context) {
-        return getSystemColor(context, android.R.attr.colorBackground);
-    }
-
-    public static int getSystemColor(Context context, int attribute) {
-        TypedValue typedValue = new TypedValue();
-        context.getTheme().resolveAttribute(attribute, typedValue, true);
-        return typedValue.data;
-    }
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
@@ -82,7 +70,7 @@ public class AyahWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if(intent!=null && intent.getAction()!=null && intent.getAction().equals(ACTION_AUTO_UPDATE)){
+        if (intent != null && intent.getAction() != null && intent.getAction().equals(ACTION_AUTO_UPDATE)) {
             onUpdate(context);
         }
     }
@@ -90,7 +78,7 @@ public class AyahWidgetProvider extends AppWidgetProvider {
     private void onUpdate(Context context) {
         AppWidgetManager appWidgetManager =
                 AppWidgetManager.getInstance(context);
-        ComponentName thisAppWidgetComponentName = new ComponentName(context.getPackageName(),getClass().getName());
+        ComponentName thisAppWidgetComponentName = new ComponentName(context.getPackageName(), getClass().getName());
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidgetComponentName);
         onUpdate(context, appWidgetManager, appWidgetIds);
     }

@@ -12,7 +12,7 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="widget_background">#80FFFFFF</color>
-    <color name="widget_background_transparent">#1AFFFFFF</color>
-    <color name="widget_background_semi_transparent">#9AFFFFFF</color>
+    <color name="widget_background_transparent">#85FFFFFF</color>
+    <color name="widget_background_semi_transparent">#DAFFFFFF</color>
     <color name="widget_background_opaque">#FFFFFFFF</color>
 </resources>

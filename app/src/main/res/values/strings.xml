@@ -2,7 +2,7 @@
     <string name="app_name">Ayah Widget</string>
     <string name="appwidget_ayah_content">وَكَانَ بِٱلْمُؤْمِنِينَ رَحِيمًۭا\nالأحزاب 43</string>
     <string name="add_widget">Add widget</string>
-    <string name="app_widget_description">Displays a Quran Ayah on the homescreen</string>
+    <string name="app_widget_description">Displays a periodically refreshed Quran Ayah as a home screen widget</string>
     <string name="widget_settings">Widget Settings</string>
     <string name="widget_settings_screen">Widget Settings Screen</string>
     <string name="appearance">Appearance</string>

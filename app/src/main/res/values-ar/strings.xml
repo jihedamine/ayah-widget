@@ -3,7 +3,7 @@
     <string name="app_name">ويدجت آية</string>
     <string name="appwidget_ayah_content">وَكَانَ بِٱلْمُؤْمِنِينَ رَحِيمًۭا\nالأحزاب 43</string>
     <string name="add_widget">إضافة ويدجت</string>
-    <string name="app_widget_description">يعرض آية من القرآن الكريم على الشاشة الرئيسية</string>
+    <string name="app_widget_description">عرض آيات من القرآن الكريم بشكل دوري على الشاشة الرئيسية</string>
     <string name="widget_settings">إعدادات الويدجت</string>
     <string name="widget_settings_screen">شاشة إعدادات الويدجت</string>
     <string name="appearance">المظهر</string>

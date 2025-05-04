@@ -1,8 +1,6 @@
 package org.jihedamine.ayahwidget;
 
-import static org.jihedamine.ayahwidget.WidgetConfigActivity.AYAH_REFRESH_INTERVAL_MINS;
-import static org.jihedamine.ayahwidget.WidgetConfigActivity.MINUTES_TO_MILLIS;
-import static org.jihedamine.ayahwidget.WidgetConfigActivity.WIDGET_PREFS;
+import static org.jihedamine.ayahwidget.ConfigDefaults.AYAH_REFRESH_INTERVAL_MINS;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -15,21 +13,16 @@ import java.util.Calendar;
 
 public class WidgetNotification {
     public static final int WIDGET_REQUEST_CODE = 191001;
+    public static final long MINUTES_TO_MILLIS = 1000 * 60;
 
     private static int[] getActiveWidgetIds(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         return appWidgetManager.getAppWidgetIds(new ComponentName(context, AyahWidgetProvider.class));
     }
 
-    public static void scheduleWidgetUpdate(Context context) {
-        var prefs = context.getSharedPreferences(WIDGET_PREFS, Context.MODE_PRIVATE);
-        int updateInterval = prefs.getAll()
-                .keySet()
-                .stream()
-                .filter(key -> key.startsWith("widget_refresh_interval_"))
-                .findFirst()
-                .map(key -> prefs.getInt(key, AYAH_REFRESH_INTERVAL_MINS))
-                .orElse(AYAH_REFRESH_INTERVAL_MINS);
+    public static void scheduleWidgetUpdate(Context context, int appWidgetId) {
+        var prefs =  context.getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
+        int updateInterval = prefs.getInt("widget_refresh_interval_" + appWidgetId, AYAH_REFRESH_INTERVAL_MINS);
 
         if (getActiveWidgetIds(context) != null && getActiveWidgetIds(context).length > 0) {
             AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

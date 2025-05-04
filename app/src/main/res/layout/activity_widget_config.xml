@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:gravity="center"
-            android:text="Widget Settings"
-            android:contentDescription="Widget Settings Screen"
+            android:text="@string/widget_settings"
+            android:contentDescription="@string/widget_settings_screen"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineMedium" />
 
         <com.google.android.material.card.MaterialCardView
@@ -37,14 +37,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Appearance"
+                    android:text="@string/appearance"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="Customize how the Ayah appears on your home screen"
+                    android:text="@string/text_size_label"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                     android:alpha="0.8" />
 
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Text size"
+                    android:text="@string/text_size"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
                 <LinearLayout
@@ -67,10 +67,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:valueFrom="40"
-                        android:valueTo="60"
-                        android:stepSize="4"
-                        android:contentDescription="Adjust text size"/>
+                        android:valueFrom="38"
+                        android:valueTo="48"
+                        android:stepSize="1"
+                        android:contentDescription="@string/adjust_text_size"/>
 
                     <TextView
                         android:id="@+id/textSizeValue"
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Background opacity"
+                    android:text="@string/background_opacity"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
                 <RadioGroup
@@ -96,24 +96,17 @@
 
                     <RadioButton
                         android:id="@+id/radioTransparent"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
-                        android:text="Transparent" />
-
-                    <RadioButton
-                        android:id="@+id/radioSemiTransparent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:text="Semi-transparent" />
+                        android:text="@string/transparent" />
 
                     <RadioButton
                         android:id="@+id/radioOpaque"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:minHeight="48dp"
-                        android:text="Opaque" />
+                        android:text="@string/opaque" />
                 </RadioGroup>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -134,14 +127,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="Update Settings"
+                    android:text="@string/update_settings"
                     android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:text="Control how often the Ayah updates"
+                    android:text="@string/refresh_interval_label"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall"
                     android:alpha="0.8" />
 
@@ -150,7 +143,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:labelFor="@id/intervalPicker"
-                    android:text="Refresh interval"
+                    android:text="@string/refresh_interval"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
                 <Spinner
@@ -165,18 +159,20 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_change_ayah"
             style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:minHeight="56dp"
-            android:text="Change Ayah" />
+            android:text="@string/change_ayah" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/save_button"
             style="@style/Widget.Material3.Button"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:minHeight="56dp"
-            android:text="Save" />
+            android:text="@string/save" />
     </LinearLayout>
 </ScrollView>

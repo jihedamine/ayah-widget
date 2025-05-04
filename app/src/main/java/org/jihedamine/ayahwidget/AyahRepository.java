@@ -2,6 +2,7 @@ package org.jihedamine.ayahwidget;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +17,9 @@ import java.util.List;
 
 public class AyahRepository {
 
+    private static final String TAG = "AyahRepository";
+    public static final String AYAHS_ASSET_NAME = "ayahs.json";
+
     private final Context context;
 
     public AyahRepository(Context context) {
@@ -25,7 +29,7 @@ public class AyahRepository {
     public List<JSONObject> getAyahs() {
         List<JSONObject> ayahs = new ArrayList<>();
         AssetManager assetManager = context.getAssets();
-        try (InputStream inputStream = assetManager.open("ayahs.json");
+        try (InputStream inputStream = assetManager.open(AYAHS_ASSET_NAME);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             StringBuilder jsonBuilder = new StringBuilder();
             String line;
@@ -37,7 +41,7 @@ public class AyahRepository {
                 ayahs.add(jsonArray.getJSONObject(i));
             }
         } catch (IOException | JSONException e) {
-            e.printStackTrace();
+            Log.e(TAG, "Error occurred while processing ayahs", e);
         }
         return ayahs;
     }

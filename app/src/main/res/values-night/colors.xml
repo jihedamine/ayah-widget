@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="widget_background_transparent">#85000000</color>
-    <color name="widget_background_semi_transparent">#DA000000</color>
     <color name="widget_background_opaque">#FF000000</color>
 </resources>

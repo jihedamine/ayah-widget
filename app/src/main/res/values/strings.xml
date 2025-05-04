@@ -3,4 +3,18 @@
     <string name="appwidget_ayah_content">وَكَانَ بِٱلْمُؤْمِنِينَ رَحِيمًۭا\nالأحزاب 43</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">Displays a Quran Ayah on the homescreen</string>
+    <string name="widget_settings">Widget Settings</string>
+    <string name="widget_settings_screen">Widget Settings Screen</string>
+    <string name="appearance">Appearance</string>
+    <string name="text_size_label">Customize how the Ayah appears on your home screen</string>
+    <string name="text_size">Text size</string>
+    <string name="background_opacity">Background opacity</string>
+    <string name="transparent">Transparent</string>
+    <string name="opaque">Opaque</string>
+    <string name="update_settings">Update Settings</string>
+    <string name="refresh_interval_label">Control how often the Ayah updates</string>
+    <string name="refresh_interval">Refresh interval</string>
+    <string name="change_ayah">Change Ayah</string>
+    <string name="save">Save</string>
+    <string name="adjust_text_size">Adjust text size</string>
 </resources>

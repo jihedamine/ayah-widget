@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ويدجت آية</string>
+    <string name="appwidget_ayah_content">وَكَانَ بِٱلْمُؤْمِنِينَ رَحِيمًۭا\nالأحزاب 43</string>
+    <string name="add_widget">إضافة ويدجت</string>
+    <string name="app_widget_description">يعرض آية من القرآن الكريم على الشاشة الرئيسية</string>
+    <string name="widget_settings">إعدادات الويدجت</string>
+    <string name="widget_settings_screen">شاشة إعدادات الويدجت</string>
+    <string name="appearance">المظهر</string>
+    <string name="text_size_label">خصص كيفية ظهور الآية على شاشتك الرئيسية</string>
+    <string name="text_size">حجم النص</string>
+    <string name="background_opacity">شفافية الخلفية</string>
+    <string name="transparent">شفاف</string>
+    <string name="opaque">غير شفاف</string>
+    <string name="update_settings">تحديث الإعدادات</string>
+    <string name="refresh_interval_label">تحكم في عدد مرات تحديث الآية</string>
+    <string name="refresh_interval">فترة التحديث</string>
+    <string name="change_ayah">تغيير الآية</string>
+    <string name="save">حفظ</string>
+</resources>

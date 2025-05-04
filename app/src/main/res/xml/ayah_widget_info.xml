@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:description="@string/app_widget_description"
     android:initialKeyguardLayout="@layout/ayah_widget"
     android:initialLayout="@layout/ayah_widget"
     android:minWidth="210dp"
     android:minHeight="40dp"
     android:previewImage="@drawable/example_appwidget_preview"
-    android:previewLayout="@layout/ayah_widget"
     android:resizeMode="horizontal|vertical"
+    android:previewLayout="@layout/ayah_widget"
     android:targetCellWidth="3"
     android:targetCellHeight="1"
     android:widgetCategory="home_screen"
     android:configure="org.jihedamine.ayahwidget.WidgetConfigActivity"
     android:updatePeriodMillis="0"
     android:widgetFeatures="reconfigurable"
-    />
+    tools:targetApi="31" />

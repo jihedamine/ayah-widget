@@ -13,7 +13,7 @@
     <string name="opaque">Opaque</string>
     <string name="update_settings">Ayah Update</string>
     <string name="refresh_interval_label">Customize how often the displayed Ayah changes</string>
-    <string name="refresh_interval">Refresh interval</string>
+    <string name="refresh_interval">Refresh interval (mins)</string>
     <string name="change_ayah">Change Ayah Now</string>
     <string name="save">Save</string>
     <string name="adjust_text_size">Adjust text size</string>

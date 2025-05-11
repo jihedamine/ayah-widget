@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Widget Ayah</string>
+    <string name="appwidget_ayah_content">وَكَانَ بِٱلْمُؤْمِنِينَ رَحِيمًۭا\nالأحزاب 43</string>
+    <string name="add_widget">Ajouter un widget</string>
+    <string name="app_widget_description">Affiche une Ayah du Coran mise à jour périodiquement sur l\'écran d\'accueil</string>
+    <string name="widget_settings">Personnalisation</string>
+    <string name="widget_settings_screen">Écran de personnalisation du widget</string>
+    <string name="appearance">Apparence</string>
+    <string name="text_size_label">Personnalisez l\'apparence de l\'Ayah sur votre écran d\'accueil</string>
+    <string name="text_size">Taille du texte</string>
+    <string name="background_opacity">Opacité de l\'arrière-plan</string>
+    <string name="transparent">Transparent</string>
+    <string name="opaque">Opaque</string>
+    <string name="update_settings">Mise à jour de l\'Ayah</string>
+    <string name="refresh_interval_label">Personnalisez la fréquence de changement de l\'Ayah affichée</string>
+    <string name="refresh_interval">Intervalle de rafraîchissement (min)</string>
+    <string name="change_ayah">Changer l\'Ayah maintenant</string>
+    <string name="save">Enregistrer</string>
+    <string name="adjust_text_size">Ajuster la taille du texte</string>
+</resources>

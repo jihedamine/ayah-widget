@@ -31,7 +31,6 @@ public class WidgetConfigActivity extends Activity {
     private int appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private Slider textSizeSlider;
     private TextView textSizeValue;
-    private String ayahContent;
     private Spinner intervalPicker;
     private RadioGroup alphaRadioGroup;
 
@@ -59,13 +58,6 @@ public class WidgetConfigActivity extends Activity {
 
         SharedPreferences prefs = getSharedPreferences("WidgetPrefs", Context.MODE_PRIVATE);
         float widgetTextSize = prefs.getFloat("widget_text_size_" + appWidgetId, TEXT_SIZE_DEFAULT);
-
-        ayahContent = prefs.getString("widget_ayah_content_" + appWidgetId, null);
-        if (ayahContent == null) {
-            AyahRepository ayahRepository = new AyahRepository(this);
-            JSONObject ayah = ayahRepository.getRandomAyah();
-            ayahContent = ayah.toString();
-        }
 
         textSizeSlider = findViewById(R.id.textSizeSlider);
         textSizeValue = findViewById(R.id.textSizeValue);
@@ -110,7 +102,16 @@ public class WidgetConfigActivity extends Activity {
         // Save alpha based on selected radio button
         int selectedId = alphaRadioGroup.getCheckedRadioButtonId();
         editor.putInt("widget_alpha_" + appWidgetId, selectedId);
-        editor.putString("widget_ayah_content_" + appWidgetId, ayahContent);
+        editor.apply();
+
+        var ayahContent = prefs.getString("widget_ayah_content_" + appWidgetId, null);
+        if (ayahContent == null) {
+            AyahRepository ayahRepository = new AyahRepository(this);
+            JSONObject ayah = ayahRepository.getRandomAyah();
+            ayahContent = ayah.toString();
+            editor.putString("widget_ayah_content_" + appWidgetId, ayahContent);
+        }
+
         editor.apply();
 
         // Finish the activity and return RESULT_OK

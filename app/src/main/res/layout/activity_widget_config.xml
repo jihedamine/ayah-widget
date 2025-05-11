@@ -92,12 +92,7 @@
                     android:id="@+id/alphaRadioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                    android:orientation="horizontal">
 
                     <RadioButton
                         android:id="@+id/radioTransparent"
@@ -112,8 +107,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="8dp"
                         android:text="@string/opaque" />
-                    </LinearLayout>
                 </RadioGroup>
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -144,27 +139,27 @@
                     android:text="@string/refresh_interval_label"
                     android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:labelFor="@id/intervalPicker"
-                    android:text="@string/refresh_interval"
-                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                    android:textColor="?android:attr/textColorPrimary" />
-
-                <Spinner
-                    android:id="@+id/intervalPicker"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:minHeight="48dp" />
-            </LinearLayout>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:labelFor="@id/intervalPicker"
+                        android:text="@string/refresh_interval"
+                        android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                    <Spinner
+                        android:id="@+id/intervalPicker"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:minHeight="48dp" />
+                </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_change_ayah"
@@ -183,7 +178,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:orientation="horizontal">
-
 
 
             <com.google.android.material.button.MaterialButton

@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">ويدجت الآية</string>
+    <string name="app_name">ويدجت آية</string>
     <string name="appwidget_ayah_content">وَكَانَ بِٱلْمُؤْمِنِينَ رَحِيمًۭا\nالأحزاب 43</string>
     <string name="add_widget">إضافة ويدجت</string>
-    <string name="app_widget_description">يعرض آية قرآنية تتجدد بشكل دوري على الشاشة الرئيسية</string>
+    <string name="app_widget_description">عرض آية قرآنية تتجدد بشكل دوري على الشاشة الرئيسية</string>
     <string name="widget_settings">التخصيص</string>
     <string name="widget_settings_screen">شاشة تخصيص الويدجت</string>
     <string name="appearance">المظهر</string>

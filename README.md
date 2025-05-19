@@ -4,11 +4,11 @@ Displays a periodically refreshed Quran Ayah as a home screen widget
 
 <table>
     <tr>
-        <td>![Screenshot1.png](app/src/main/res/screenshots/Screenshot1.png)</td>
-        <td>![Screenshot2.png](app/src/main/res/screenshots/Screenshot2.png)</td>
+        <td><img src="app/src/main/res/screenshots/Screenshot1.png" alt="Screenshot1" /></td>
+        <td><img src="app/src/main/res/screenshots/Screenshot2.png" alt="Screenshot2" /></td>
     </tr>
     <tr>
-        <td>![Screenshot3.png](app/src/main/res/screenshots/Screenshot3.png)</td>
-        <td>![Screenshot4.png](app/src/main/res/screenshots/Screenshot4.png)</td>
+        <td><img src="app/src/main/res/screenshots/Screenshot3.png" alt="Screenshot3" /></td>
+        <td><img src="app/src/main/res/screenshots/Screenshot4.png" alt="Screenshot4" /></td>
     </tr>
 </table>

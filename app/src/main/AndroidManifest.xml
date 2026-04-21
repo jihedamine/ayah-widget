@@ -21,6 +21,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="org.jihedamine.ayahwidget.AyahListActivity"
+            android:exported="false"
+            android:label="@string/full_ayah_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <receiver
             android:name=".AyahWidgetProvider"
             android:exported="false">

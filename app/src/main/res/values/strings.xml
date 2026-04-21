@@ -17,4 +17,6 @@
     <string name="change_ayah">Change Ayah Now</string>
     <string name="save">Save</string>
     <string name="adjust_text_size">Adjust text size</string>
+    <string name="full_ayah_list">Full Ayah List</string>
+    <string name="view_all_ayahs">View All Ayahs</string>
 </resources>

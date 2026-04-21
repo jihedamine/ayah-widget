@@ -69,6 +69,11 @@ class WidgetConfigActivity : Activity() {
             Toast.makeText(this, "Widget updated with a new quote", Toast.LENGTH_SHORT).show()
         }
 
+        findViewById<Button>(R.id.button_view_all_ayahs).setOnClickListener {
+            val intent = Intent(this, AyahListActivity::class.java)
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.save_button).setOnClickListener {
             savePreferences()
             WidgetNotification.scheduleWidgetUpdate(this, appWidgetId)

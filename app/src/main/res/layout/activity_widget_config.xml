@@ -69,7 +69,7 @@
                         android:layout_weight="1"
                         android:contentDescription="@string/adjust_text_size"
                         android:stepSize="1"
-                        android:valueFrom="38"
+                        android:valueFrom="28"
                         android:valueTo="48" />
 
                     <TextView

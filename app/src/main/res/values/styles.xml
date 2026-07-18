@@ -16,4 +16,6 @@
     <style name="AppTheme.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your theme here -->
     </style>
+
+    <style name="Theme.AyahWidget.Widget" parent="AppTheme" />
 </resources>

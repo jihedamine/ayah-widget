@@ -3,18 +3,28 @@
     android:id="@+id/appwidget_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/widget_background_opaque"
-    android:theme="@style/Theme.Material3.DynamicColors.DayNight">
+    android:background="@drawable/outer_container_background"
+    android:theme="@style/Theme.AyahWidget.Widget">
 
-    <TextView
-        android:id="@+id/appwidget_ayah_content"
-        android:contentDescription="@string/appwidget_ayah_content"
-        android:text="@string/appwidget_ayah_content"
+    <LinearLayout
+        android:id="@+id/appwidget_inner_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="?attr/colorOnSurface"
-        android:padding="10dp"
-        android:gravity="center|center"
-        android:textStyle="bold" />
+        android:layout_margin="10dp"
+        android:background="@drawable/inner_container_background">
+
+        <TextView
+            android:id="@+id/appwidget_ayah_content"
+            android:contentDescription="@string/appwidget_ayah_content"
+            android:text="@string/appwidget_ayah_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            android:gravity="center|center"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:fontFamily="@font/noto_sans_arabic" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -22,6 +22,17 @@ class AyahWidgetProvider : AppWidgetProvider() {
         super.onReceive(context, intent)
         if (intent?.action == ACTION_AUTO_UPDATE) {
             onUpdate(context)
+        } else if (intent?.action == Intent.ACTION_CONFIGURATION_CHANGED) {
+            onConfigurationChanged(context)
+        }
+    }
+
+    private fun onConfigurationChanged(context: Context) {
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val thisAppWidgetComponentName = ComponentName(context.packageName, javaClass.name)
+        val appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidgetComponentName)
+        for (appWidgetId in appWidgetIds) {
+            AyahWidgetService.updateWidget(context, appWidgetId)
         }
     }
 

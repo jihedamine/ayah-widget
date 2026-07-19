@@ -44,12 +44,12 @@ object AyahWidgetService {
 
         // Resolve dynamic Material 3 colors from the widget's own theme so the palette
         // is consistent whether the system has dynamic color enabled or falls back to
-        // the app's Material theme. Outer background derives from the surface tone,
-        // the inner container uses the primary container color, and text uses the
-        // on-primary container color.
+        // the app's Material theme. Outer background derives from the primary container
+        // color, the inner container uses the surface container high tone, and text uses
+        // the on-primary container color.
         val widgetContext = ContextThemeWrapper(context, getDynamicColorThemeResId(context))
-        val bgColor = getColorFromAttr(widgetContext, com.google.android.material.R.attr.colorSurfaceContainerHigh, android.R.color.white)
-        val innerBgColor = getColorFromAttr(widgetContext, com.google.android.material.R.attr.colorPrimaryContainer, android.R.color.white)
+        val bgColor = getColorFromAttr(widgetContext, com.google.android.material.R.attr.colorPrimaryContainer, android.R.color.white)
+        val innerBgColor = getColorFromAttr(widgetContext, com.google.android.material.R.attr.colorSurfaceContainerHigh, android.R.color.white)
         // Honor user alpha preference. The background is always derived from the dynamic
         // color: transparent mode applies the same dynamic tone with reduced opacity so the
         // home screen shows through while keeping the dynamic palette.
